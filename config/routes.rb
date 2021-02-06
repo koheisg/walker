@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :feeds
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  mount Sidekiq::Web => '/w'
+  if Rails.env.development?
+    mount Sidekiq::Web => '/w'
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
