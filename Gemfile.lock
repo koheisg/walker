@@ -226,10 +226,10 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.0)
-  redis-namespace (~> 1.8)
+  redis-namespace
   sass-rails (>= 6)
   selenium-webdriver
-  sidekiq (~> 6.1)
+  sidekiq
   spring
   turbolinks (~> 5)
   tzinfo-data

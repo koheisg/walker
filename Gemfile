@@ -56,6 +56,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem "sidekiq", "~> 6.1"
+gem "sidekiq"
 
-gem "redis-namespace", "~> 1.8"
+gem "redis-namespace"
