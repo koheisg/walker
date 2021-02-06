@@ -71,12 +71,14 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
     :user_name => ENV['SENDGRID_PASSWORD'],
     :password => ENV['SENDGRID_USERNAME'],
-    :domain => 'yourdomain.com',
+    :domain => ENV['RAILS_HOST'],
     :address => 'smtp.sendgrid.net',
     :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
   }
+
+  config.action_mailer.default_url_options = { host: ENV['RAILS_HOST'], port: 3000 }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
