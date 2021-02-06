@@ -10,5 +10,20 @@
   <%= @feed.url %>
 </p>
 
+<table>
+  <tr>
+    <th>title</th>
+    <th>description</th>
+  </tr>
+  <% @items.each do |item| %>
+    <tr>
+      <td>
+        <%= link_to truncate(item.title, length: 22), item.link, title: item.title %>
+      </td>
+      <td><%= item.description %></td>
+    </tr>
+  <% end %>
+<p>
+
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <%= link_to 'Back', feeds_path %>

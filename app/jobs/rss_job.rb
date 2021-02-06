@@ -1,7 +1,14 @@
+require 'rss'
+
 class RssJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
-    # Do something later
+  def perform(feed)
+    xml = Net::HTTP.get(URI.parse(feed.url))
+    RSS::Parser.parse(xml).items.each do |item|
+      feed.items.create_or_find_by!(link: item.link) do |i|
+        i.title = item.title
+      end
+    end
   end
 end
