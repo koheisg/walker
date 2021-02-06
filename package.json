@@ -2,6 +2,7 @@
   "name": "walker",
   "private": true,
   "dependencies": {
+    "@hotwired/turbo": "^7.0.0-beta.4",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
