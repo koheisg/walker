@@ -14,6 +14,7 @@ class FeedsTest < ApplicationSystemTestCase
     visit feeds_url
     click_on "New Feed"
 
+    fill_in "Name", with: @feed.name
     fill_in "Url", with: @feed.url
     click_on "Create Feed"
 
@@ -25,6 +26,7 @@ class FeedsTest < ApplicationSystemTestCase
     visit feeds_url
     click_on "Edit", match: :first
 
+    fill_in "Name", with: @feed.name
     fill_in "Url", with: @feed.url
     click_on "Update Feed"
 
