@@ -69,13 +69,13 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   #
   ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_PASSWORD'],
-    :password => ENV['SENDGRID_USERNAME'],
-    :domain => ENV['RAILS_HOST'],
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    authentication: :plain,
+    address: ENV['MAILGUN_SMTP_SERVER'],
+    domain: ENV['MAILGUN_DOMAIN'],
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
+    port: ENV['MAILGUN_SMTP_PORT'],
+    enable_starttls_auto: true
   }
 
   config.action_mailer.default_url_options = { host: ENV['RAILS_HOST'], port: 3000 }
