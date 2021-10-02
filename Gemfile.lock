@@ -181,6 +181,9 @@ GEM
     regexp_parser (2.1.1)
     reline (0.2.7)
       io-console (~> 0.5)
+    rexml (3.2.5)
+    rss (0.2.9)
+      rexml
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (3.142.7)
@@ -249,6 +252,7 @@ DEPENDENCIES
   rails (~> 7.0.0.alpha2)
   redis
   redis-namespace
+  rss
   selenium-webdriver
   sentry-rails
   sentry-ruby
