@@ -16,13 +16,17 @@
   <%= link_to 'Back', feeds_path %>
 </div>
 
+
 <div class='mb-5 flex flex-col'>
-  <%= render @page.records %>
-<div>
+  <%= turbo_frame_tag "items" do %>
+    <%= render @page.records %>
+  <% end %>
+</div>
 
-
-<% if @page.last? %>
-  No more pages!
-<% else %>
-  <%= link_to "Next page", feed_path(page: @page.next_param) %>
+<%= turbo_frame_tag "paginate_link" do %>
+  <% if @page.last? %>
+    No more pages!
+  <% else %>
+    <%= button_to "Next page", feed_path(format: 'turbo_stream', page: @page.next_param), method: :get %>
+  <% end %>
 <% end %>
