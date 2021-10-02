@@ -9,7 +9,7 @@ class RssJob < ApplicationJob
       feed.items.create_or_find_by!(link: item.link) do |i|
         i.title = item.title
         i.description = item.description
-        i.published_at = item.pubDate
+        i.published_at = item.try(:pubDate)
       end
     end
   end
