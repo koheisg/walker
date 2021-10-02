@@ -20,6 +20,6 @@ xml.rss(
     # xml.ttl "40" # TODO cacheあった方がいいんじゃないかな？
     # xml.atom :link, "href" => "RSSのURL", "rel" => "self", "type" => "application/rss+xml" TODO 必要なさそう
     xml.generator root_url
-    xml << (render(@items).gsub(/^/, '    ')) if @items.size.positive?
+    xml << (render(@page.records).gsub(/^/, '    ')) if @page.records.size.positive?
   end
 end

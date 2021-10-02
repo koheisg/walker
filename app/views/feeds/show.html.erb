@@ -10,7 +10,14 @@
   <%= @feed.url %>
 </p>
 
-<%= render @items %>
+<%= render @page.records %>
+
+
+<% if @page.last? %>
+  No more pages!
+<% else %>
+  <%= link_to "Next page", feed_path(page: @page.next_param) %>
+<% end %>
 
 <%= link_to 'Edit', edit_feed_path(@feed) %> |
 <%= link_to 'Back', feeds_path %>
