@@ -1,16 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @feed.name %>
-</p>
+<div class='mb-5 flex flex-col'>
+  <div class='flex'>
+    <div><strong>Name:</strong></div>
+    <div><%= @feed.name %></div>
+  </div>
+  <div class='flex'>
+    <div><strong>Url:</strong></div>
+    <div><%= @feed.url %></div>
+  </div>
+</div>
 
-<p>
-  <strong>Url:</strong>
-  <%= @feed.url %>
-</p>
+<div class='mb-5 flex'>
+  <%= link_to 'Edit', edit_feed_path(@feed) %> |
+  <%= link_to 'Back', feeds_path %>
+</div>
 
-<%= render @page.records %>
+<div class='mb-5 flex flex-col'>
+  <%= render @page.records %>
+<div>
 
 
 <% if @page.last? %>
@@ -18,6 +26,3 @@
 <% else %>
   <%= link_to "Next page", feed_path(page: @page.next_param) %>
 <% end %>
-
-<%= link_to 'Edit', edit_feed_path(@feed) %> |
-<%= link_to 'Back', feeds_path %>
