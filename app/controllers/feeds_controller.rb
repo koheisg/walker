@@ -1,5 +1,5 @@
 class FeedsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :authenticate, only: :show
   before_action :set_feed, only: %i[ show edit update destroy ]
 
   # GET /feeds or /feeds.json
