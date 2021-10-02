@@ -3,6 +3,8 @@ require 'rss'
 class RssJob < ApplicationJob
   queue_as :default
 
+  discard_on ActiveJob::DeserializationError
+
   def perform(feed)
     xml = Net::HTTP.get(URI.parse(feed.url))
     RSS::Parser.parse(xml).items.each do |item|
