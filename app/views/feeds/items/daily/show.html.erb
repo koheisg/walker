@@ -1,0 +1,16 @@
+<h1 class='text-lg'>Items of <%= l @date.to_date %></h1>
+<p><%= link_to(l(@date.to_date.yesterday), feed_daily_path(date: @date.yesterday.strftime("%Y%m%d"))) %> &lt-  -&gt <%= link_to(l(@date.to_date.tomorrow), feed_daily_path(date: @date.tomorrow.strftime("%Y%m%d"))) %>  </p>
+
+<div class='mb-5 flex flex-col'>
+  <%= turbo_frame_tag "items" do %>
+    <%= render collection: @page.records, partial: 'items/item' %>
+  <% end %>
+</div>
+
+<%= turbo_frame_tag "paginate_link" do %>
+  <% if @page.last? %>
+    No more pages!
+  <% else %>
+    <%= button_to "Next page", feed_daily_path(format: 'turbo_stream', page: @page.next_param), method: :get %>
+  <% end %>
+<% end %>

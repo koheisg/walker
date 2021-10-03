@@ -1,0 +1,8 @@
+<% @items_set.each do |date, items| %>
+  <div class='pb-5'>
+    <h2><%= date %></h2>
+    <% items.each do |item| %>
+      <p><%= "[#{item.title}](#{item.link})" %></p>
+    <% end %>
+  </div>
+<% end %>
