@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :feeds do
     resources :items, module: 'feeds', only: [:index] do
       collection do
-        resources :daily, param: :date, module: 'feeds/items', only: :show
+        resources :daily, param: :date, module: 'items', only: :show
       end
     end
   end
