@@ -15,7 +15,7 @@ xml.rss(
     xml.title @feed.name
     xml.description "#{@feed.name}の説明" # TODO
     xml.link @feed.url
-    xml.pubDate Time.current.rfc822
+    xml.pubDate @ref_time.rfc822
     xml.language "ja" # TODO localeから選択 'ja-ja' かも確認
     # xml.ttl "40" # TODO cacheあった方がいいんじゃないかな？
     # xml.atom :link, "href" => "RSSのURL", "rel" => "self", "type" => "application/rss+xml" TODO 必要なさそう

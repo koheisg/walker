@@ -3,6 +3,7 @@ class Feeds::ItemsController < ApplicationController
 
   def index
     @feed = Feed.find(params[:feed_id])
-    @items_set = Set.new(@feed.items.where(created_at: ...Time.current.midnight).limit(100)).classify { |item| item.created_at.to_date }
+    @ref_time = Time.current.midnight
+    @items_set = Set.new(@feed.items.where(created_at: ...@ref_time).limit(100)).classify { |item| item.created_at.to_date }
   end
 end
