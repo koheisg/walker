@@ -14,7 +14,7 @@ xml.rss(
   xml.channel do
     xml.title @feed.name
     xml.description "#{@feed.name}の説明" # TODO
-    xml.link @feed.url
+    xml.link feed_items_url
     xml.pubDate @ref_time.rfc822
     xml.language "ja" # TODO localeから選択 'ja-ja' かも確認
     # xml.ttl "40" # TODO cacheあった方がいいんじゃないかな？
@@ -23,7 +23,7 @@ xml.rss(
     @items_set.each do |date, items|
       xml.item do
         xml.title date
-        xml.link feed_daily_path(date: date.strftime("%Y%m%d"))
+        xml.link feed_daily_url(date: date.strftime("%Y%m%d"))
         xml.pubDate date.to_time
         xml.content(:encoded) do
           xml.cdata!(
