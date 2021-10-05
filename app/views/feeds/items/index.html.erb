@@ -1,8 +1,6 @@
 <% @items_set.each do |date, items| %>
-  <div class='pb-5'>
-    <h2><%= date %></h2>
-    <% items.each do |item| %>
-      <p><%= "[#{item.title}](#{item.link})" %></p>
-    <% end %>
+  <div class='pb-10'>
+    <h2 class='px-4 sm:px-6'><%= link_to date, feed_daily_path(date: date.strftime("%Y%m%d")) %></h2>
+    <%= render collection: items, partial: 'items/item' %>
   </div>
 <% end %>
