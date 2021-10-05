@@ -1,4 +1,5 @@
 class Feeds::Items::DailyController < ApplicationController
+  skip_before_action :authenticate
   before_action :set_date
 
   def show
