@@ -1,7 +1,8 @@
 <% content_for :breadcrumb do %>
   <%= render('shared/breadcrumb', links: [
     {path: feeds_path, name: 'Feeds'},
-    {path: request.path, name: @feed.name},
+    {path: feed_items_path(@feed), name: @feed.name},
+    {path: request.path, name: 'detail'},
   ]) %>
 <% end %>
 

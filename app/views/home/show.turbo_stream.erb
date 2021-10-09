@@ -1,5 +1,5 @@
 <%= turbo_stream.append(:items) do %>
-  <%= render partial: 'items/item', collection: @page.records, formats: :html %>
+  <%= render partial: 'items/item', layout: 'item', collection: @page.records, formats: :html %>
 <% end %>
 
 <%= turbo_stream.replace(:paginate_link) do %>
