@@ -1,9 +1,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resource :session
   root to: 'top#show'
-  resource :session
+  resource :session, only: [:new, :create, :destroy]
+  get :home, to: 'home#show'
   resources :feeds do
     resources :items, module: 'feeds', only: [:index] do
       collection do
