@@ -3,7 +3,7 @@ class CreateItemOgps < ActiveRecord::Migration[7.0]
     create_table :item_ogps do |t|
       t.references :item, index: {:unique=>true}, null: false, foreign_key: true
       t.string :title
-      t.string :type
+      t.string :og_type
       t.string :description
       t.string :url
       t.string :site_name

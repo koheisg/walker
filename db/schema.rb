@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_101344) do
   create_table "item_ogps", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.string "title"
-    t.string "type"
+    t.string "og_type"
     t.string "description"
     t.string "url"
     t.string "site_name"
