@@ -1,3 +1,10 @@
+<% content_for :breadcrumb do %>
+  <%= render('shared/breadcrumb', links: [
+    {path: feeds_path, name: 'Feeds'},
+    {path: request.path, name: @feed.name},
+  ]) %>
+<% end %>
+
 <p id="notice"><%= notice %></p>
 
 <div class='mb-5 flex flex-col'>
@@ -28,7 +35,7 @@
     <% if @page.last? %>
       No more pages!
     <% else %>
-      <%= button_to "Load more", feed_daily_path(format: 'turbo_stream', page: @page.next_param), method: :get, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      <%= button_to "Load more", feed_path(@feed, format: 'turbo_stream', page: @page.next_param), method: :get, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     <% end %>
   <% end %>
 </div>
