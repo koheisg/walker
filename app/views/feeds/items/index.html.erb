@@ -8,7 +8,7 @@
 
 <% @items_set.each do |date, items| %>
   <div class='pb-10'>
-    <h2 class='px-4 sm:px-6'><%= link_to date, feed_daily_path(date: date.strftime("%Y%m%d")) %></h2>
+    <h2 class=''><%= link_to date, feed_daily_path(date: date.strftime("%Y%m%d")), class: 'underline' %></h2>
     <%= render collection: items, partial: 'items/item' %>
   </div>
 <% end %>

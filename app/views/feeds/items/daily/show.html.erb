@@ -27,7 +27,7 @@
     </svg>
   <% end %>
 </span>
-(<%= link_to 'See recent items', feed_items_path(@feed) %>)
+(<%= link_to 'See recent items', feed_items_path(@feed), class: 'underline' %>)
 
 <div class='mb-5 flex flex-col'>
   <%= turbo_frame_tag "items" do %>
