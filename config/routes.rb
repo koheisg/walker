@@ -1,5 +1,9 @@
 require 'sidekiq/web'
 
+Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+  username == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
+end
+
 Rails.application.routes.draw do
   root to: 'top#show'
   resource :session, only: [:new, :create, :destroy]
@@ -11,9 +15,9 @@ Rails.application.routes.draw do
       end
     end
   end
+  mount Sidekiq::Web => '/w'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   if Rails.env.development?
-    mount Sidekiq::Web => '/w'
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 end
