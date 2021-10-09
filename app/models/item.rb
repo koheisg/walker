@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
   belongs_to :feed
-  default_scope {order(id: :desc)}
+  has_one :item_ogp
+  default_scope { order(id: :desc) }
 end

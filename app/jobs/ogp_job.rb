@@ -1,7 +1,7 @@
 class OgpJob < ApplicationJob
   def perform(item)
     ItemOgp.create_or_find_by(item_id: item.id) do |ogp|
-      doc = Nokogiri::HTML(URI.open(Item.last.link))
+      doc = Nokogiri::HTML(URI.open(item.link))
 
       ogp.assign_attributes(
         title: doc.css('meta[property="og:title"]/@content').text,
