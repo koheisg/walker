@@ -8,7 +8,7 @@
         </div>
         <div class="min-w-0 flex-1">
           <p class="text-sm font-medium text-gray-900"><%= item.title %></p>
-          <p class="text-sm text-gray-500"><%= item.description %></p>
+          <p class="text-sm text-gray-500"><%= sanitize item.description %></p>
         </div>
       </div>
     </div>
