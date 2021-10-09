@@ -1,7 +1,17 @@
 <div class='bg-white overflow-hidden rounded-lg shadow my-5'>
   <%= link_to item.link, title: item.title, class: 'text-gray-900 hover:underline visited:text-gray-500', target: '_blank' do %>
     <% if item.item_ogp %>
-      <%= image_tag item.item_ogp.image %>
+      <div class="bg-white">
+        <div class="flex flex-col">
+          <div class="flex-shrink-0">
+            <%= image_tag item.item_ogp.image, class: 'object-cover max-h-64 w-full' %>
+          </div>
+          <div class="px-4 py-5 sm:px-6">
+            <p class="text-sm font-medium"><%= item.title %></p>
+            <p class="text-sm text-gray-500"><%= sanitize item.description %></p>
+          </div>
+        </div>
+      </div>
     <% else %>
       <div class="bg-white px-4 py-5 sm:px-6">
         <div class="flex space-x-4">
