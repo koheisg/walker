@@ -5,7 +5,7 @@ class OgpJob < ApplicationJob
 
   def perform(item)
     ItemOgp.create_or_find_by(item_id: item.id) do |ogp|
-      doc = Nokogiri::HTML(URI.open(item.link))
+      doc = document_from(item.link)
 
       ogp.assign_attributes(
         title: doc.css('meta[property="og:title"]/@content').text,
@@ -17,4 +17,14 @@ class OgpJob < ApplicationJob
       )
     end
   end
+
+  private
+    def document_from(url)
+      begin
+        Nokogiri::HTML(URI.open(url))
+      rescue => e
+        Sentry.capture_exception(e)
+        nil
+      end
+    end
 end
