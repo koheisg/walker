@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_084309) do
+ActiveRecord::Schema.define(version: 2021_10_09_094926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,19 @@ ActiveRecord::Schema.define(version: 2021_10_02_084309) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "item_ogps", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.string "title"
+    t.string "type"
+    t.string "description"
+    t.string "url"
+    t.string "site_name"
+    t.text "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_ogps_on_item_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -61,5 +74,6 @@ ActiveRecord::Schema.define(version: 2021_10_02_084309) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "item_ogps", "items"
   add_foreign_key "items", "feeds"
 end
