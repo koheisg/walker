@@ -8,7 +8,7 @@ class RssJob < ApplicationJob
   def perform(feed)
     xml = Net::HTTP.get(URI.parse(feed.url))
     RSS::Parser.parse(xml).items.each do |item|
-      if item.class == RSS::Atom::Feed::Entry
+      new_item = if item.class == RSS::Atom::Feed::Entry
         feed.items.create_or_find_by!(link: item.link.href) do |i|
           i.title = item.title.content
           i.description = item.summary&.content
@@ -21,6 +21,8 @@ class RssJob < ApplicationJob
           i.published_at = item.try(:pubDate)
         end
       end
+
+      OgpJob.perform_later(new_item)
     end
   end
 end
