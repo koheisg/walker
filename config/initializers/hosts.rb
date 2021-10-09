@@ -1,1 +1,1 @@
-Rails.application.config.hosts << ENV['DEVELOPMENT_HOST']
+Rails.application.config.hosts << ENV['HOST']
