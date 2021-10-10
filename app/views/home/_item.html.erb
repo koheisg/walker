@@ -1,2 +1,2 @@
-<p>from: <%= link_to item.feed.name, feed_path(item.feed), data: { turbo: false }, class: 'underline' %></p>
+<p>from: <%= link_to item.feed.name, feed_items_path(item.feed), data: { turbo: false }, class: 'underline' %></p>
 <%= yield item %>
