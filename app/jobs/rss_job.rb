@@ -6,8 +6,11 @@ class RssJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
 
   def perform(feed)
-    xml = Net::HTTP.get(URI.parse(feed.url))
-    RSS::Parser.parse(xml).items.each do |item|
+    items = RSS::Parser.parse(feed.url)&.items
+
+    Sentry.capture_message "cant get items feed_id: #{feed.id} url: #{feed.url}" if items.nil?
+
+    items.each do |item|
       new_item = if item.class == RSS::Atom::Feed::Entry
         feed.items.create_or_find_by!(link: item.link.href) do |i|
           i.title = item.title.content
