@@ -25,6 +25,11 @@ xml.rss(
         xml.title date
         xml.link feed_daily_url(date: date.strftime("%Y%m%d"))
         xml.pubDate (date + 1.day).to_time
+        xml.content(:encoded) do
+          xml.cdata!(
+            (items.first(3).map { |item| item.title }.join(" / ")).truncate(140)
+          )
+        end
         xml.dc :creator, @feed.name
       end
     end
