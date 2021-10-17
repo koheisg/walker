@@ -1,6 +1,8 @@
 require 'mini_magick'
 
 class OgpsController < ApplicationController
+  skip_before_action :authenticate
+
   def show
     if params[:text]
       image = genarate(params[:text])
