@@ -1,5 +1,10 @@
 <% content_for :ogp do %>
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="<%= @feed.name %> Items of <%= l @date.to_date %>">
+  <meta property="og:description" content="<%= @feed.name %> Items of <%= l @date.to_date %>">
   <meta property="og:image" content="<%= ogp_url(format: :png, text: "#{@feed.name}\n#{l @date.to_date}") %>">
+  <meta content="<%= feed_daily(feed: @feed, date: params[:date]) %>" property="og:url"/>
+  <meta content="Walker" property="og:site_name"/>
 <% end %>
 
 <% content_for :breadcrumb do %>
