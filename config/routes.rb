@@ -6,6 +6,7 @@ end
 
 Rails.application.routes.draw do
   root to: 'top#show'
+  resource :ogp, only: :show
   resource :session, only: [:new, :create, :destroy]
   get :home, to: 'home#show'
   resources :feeds do

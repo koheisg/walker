@@ -1,3 +1,7 @@
+<% content_for :ogp do %>
+  <meta property="og:image" content="<%= ogp_url(text: "#{@feed.name}\n#{l @date.to_date}") %>">
+<% end %>
+
 <% content_for :breadcrumb do %>
   <%= render('shared/breadcrumb', links: [
     {path: feeds_path, name: 'Feeds'},
