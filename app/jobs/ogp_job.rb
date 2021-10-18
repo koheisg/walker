@@ -7,7 +7,7 @@ class OgpJob < ApplicationJob
   retry_on Net::OpenTimeout, wait: 5.minutes, queue: :low_priority
 
   def perform(item)
-    ItemOgp.create_or_find_by(item_id: item.id) do |ogp|
+    ItemOgp.find_or_create_by!(item_id: item.id) do |ogp|
       if doc = document_from(item.link)
 
         ogp.assign_attributes(
