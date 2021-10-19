@@ -12,12 +12,12 @@ class OgpJob < ApplicationJob
       browser = Ferrum::Browser.new
       browser.go_to(item.link)
       ogp.assign_attributes(
-        title: browser.at_css('meta[property="og:title"]').attribute('content'),
-        og_type: browser.at_css('meta[property="og:type"]').attribute('content'),
-        description: browser.at_css('meta[property="og:description"]').attribute('content'),
-        url: browser.at_css('meta[property="og:url"]').attribute('content'),
-        site_name: browser.at_css('meta[property="og:site_name"]').attribute('content'),
-        image: browser.at_css('meta[property="og:image"]').attribute('content')
+        title: browser.at_css('meta[property="og:title"]')&.attribute('content'),
+        og_type: browser.at_css('meta[property="og:type"]')&.attribute('content'),
+        description: browser.at_css('meta[property="og:description"]')&.attribute('content'),
+        url: browser.at_css('meta[property="og:url"]')&.attribute('content'),
+        site_name: browser.at_css('meta[property="og:site_name"]')&.attribute('content'),
+        image: browser.at_css('meta[property="og:image"]')&.attribute('content')
       )
       browser.quit
     end
