@@ -55,6 +55,7 @@ gem 'sidekiq'
 gem 'redis-namespace'
 gem 'geared_pagination'
 gem 'mini_magick'
+gem 'ferrum'
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]

@@ -9,22 +9,17 @@ class OgpJob < ApplicationJob
 
   def perform(item)
     ItemOgp.find_or_create_by(item_id: item.id) do |ogp|
-      if doc = document_from(item.link)
-
-        ogp.assign_attributes(
-          title: doc.css('meta[property="og:title"]/@content').text,
-          og_type: doc.css('meta[property="og:type"]/@content').text,
-          description: doc.css('meta[property="og:description"]/@content').text,
-          url: doc.css('meta[property="og:url"]/@content').text,
-          site_name: doc.css('meta[property="og:site_name"]/@content').text,
-          image: doc.css('meta[property="og:image"]/@content').text
-        )
-      end
+      browser = Ferrum::Browser.new
+      browser.go_to(item.link)
+      ogp.assign_attributes(
+        title: browser.at_css('meta[property="og:title"]').attribute('content'),
+        og_type: browser.at_css('meta[property="og:type"]').attribute('content'),
+        description: browser.at_css('meta[property="og:description"]').attribute('content'),
+        url: browser.at_css('meta[property="og:url"]').attribute('content'),
+        site_name: browser.at_css('meta[property="og:site_name"]').attribute('content'),
+        image: browser.at_css('meta[property="og:image"]').attribute('content')
+      )
+      browser.quit
     end
   end
-
-  private
-    def document_from(url)
-      Nokogiri::HTML(URI.open(url))
-    end
 end
