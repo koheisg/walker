@@ -1,14 +1,14 @@
 class OgpJob < ApplicationJob
   queue_as :default
 
-  discard_on ActiveJob::DeserializationError, ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
+  discard_on ActiveJob::DeserializationError, ActiveRecord::RecordNotUnique
 
   retry_on OpenURI::HTTPError, wait: 5.minutes, queue: :low_priority
   retry_on Net::ReadTimeout, wait: 5.minutes, queue: :low_priority
   retry_on Net::OpenTimeout, wait: 5.minutes, queue: :low_priority
 
   def perform(item)
-    ItemOgp.find_or_create_by!(item_id: item.id) do |ogp|
+    ItemOgp.find_or_create_by(item_id: item.id) do |ogp|
       if doc = document_from(item.link)
 
         ogp.assign_attributes(
