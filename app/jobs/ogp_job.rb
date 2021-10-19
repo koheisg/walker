@@ -9,7 +9,7 @@ class OgpJob < ApplicationJob
 
   def perform(item)
     ItemOgp.find_or_create_by(item_id: item.id) do |ogp|
-      browser = Ferrum::Browser.new
+      browser = Ferrum::Browser.new(timeout: 15)
       browser.go_to(item.link)
       ogp.assign_attributes(
         title: browser.at_css('meta[property="og:title"]')&.attribute('content'),
