@@ -1,7 +1,8 @@
 class OgpJob < ApplicationJob
   queue_as :default
 
-  discard_on ActiveJob::DeserializationError, ActiveRecord::RecordNotUnique
+  discard_on ActiveJob::DeserializationError, ActiveRecord::RecordNotUnique, ActiveRecord::RecordInvalid
+
   retry_on OpenURI::HTTPError, wait: 5.minutes, queue: :low_priority
   retry_on Net::ReadTimeout, wait: 5.minutes, queue: :low_priority
   retry_on Net::OpenTimeout, wait: 5.minutes, queue: :low_priority
