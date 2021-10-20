@@ -21,6 +21,6 @@ class OgpJob < ApplicationJob
   
   private
     def browser
-      @browser ||= Ferrum::Browser.new(timeout: 15)
+      @browser ||= Ferrum::Browser.new(timeout: 15, process_timeout: 30)
     end
 end
