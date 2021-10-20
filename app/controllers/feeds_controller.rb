@@ -8,7 +8,6 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
-    RssJob.perform_later(@feed)
     set_page_and_extract_portion_from @feed.items
   end
 
