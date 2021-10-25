@@ -4,7 +4,11 @@
       <div class="bg-white">
         <div class="flex flex-col">
           <div class="flex-shrink-0">
-            <%= image_tag item.item_ogp.image, class: 'object-cover max-h-64 w-full' %>
+            <% if item.item_ogp.image %>
+              <%= image_tag item.item_ogp.image, class: 'object-cover max-h-64 w-full' %>
+            <% else %>
+              <%= image_tag ogp_url(format: :png, text: item.item_ogp.description || item.title), class: 'object-cover max-h-64 w-full' %>
+            <% end %>
           </div>
           <div class="px-4 pt-5 sm:px-6">
             <p class="text-sm font-medium"><%= item.title %></p>
