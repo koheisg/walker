@@ -14,9 +14,6 @@
             <p class="text-sm font-medium"><%= item.title %></p>
             <p class="text-sm text-gray-500"><%= item.item_ogp.description %></p>
           </div>
-          <div class="px-4 pt-5 sm:px-6">
-            <p class="text-xs text-gray-500"><%= sanitize item.description %></p>
-          </div>
           <div class="px-4 py-5 sm:px-6 w-full flex justify-end">
             <div class='mr-auto'>
             <p class="text-sm text-gray-500"><%= item.feed.name %> ･ <%= time_ago_in_words item.created_at %> ago</p>
