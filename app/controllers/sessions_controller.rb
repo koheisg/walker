@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
       if @session.save
         cookies.encrypted[:user_id] = @session.id
 j
-        format.html { redirect_to feeds_url, notice: "Session was successfully created." }
+        format.html { redirect_to home_url, notice: "Session was successfully created." }
         format.json { render :show, status: :created, location: @session }
       else
         format.html { render :new, status: :unprocessable_entity }
