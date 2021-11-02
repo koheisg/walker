@@ -10,13 +10,11 @@ class SessionsController < ApplicationController
   def create
     @session = Session.new(session_params)
 
-    respond_to do |format|
-      if @session.save
-        cookies.encrypted[:user_id] = @session.id
-j
-        format.html { redirect_to home_url, notice: "Session was successfully created." }
-        format.json { render :show, status: :created, location: @session }
-      else
+    if @session.save
+      cookies.encrypted[:user_id] = @session.id
+      redirect_to root_url, notice: "Session was successfully created."
+    else
+      respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @session.errors, status: :unprocessable_entity }
       end
