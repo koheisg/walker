@@ -7,20 +7,6 @@
   <meta content="Walker" property="og:site_name"/>
 <% end %>
 
-<% content_for :breadcrumb do %>
-  <%= render('shared/breadcrumb', links: [
-    {path: feeds_path, name: 'Feeds'},
-    {path: feed_items_path(@feed), name: @feed.name},
-    {path: request.path, name: l(@date.to_date) },
-  ]) %>
-<% end %>
-
-<div class="flex justify-center max-w-lg mx-auto px-5 pb-5">
-  <h3 class="text-lg leading-6 font-medium text-gray-900">
-    <%= @feed.name %> Items of <%= l @date.to_date %>
-  </h3>
-</div>
-
 <div class="flex justify-center mt-1 max-w-lg mx-auto">
   <span class="relative z-0 inline-flex shadow-sm rounded-md">
     <%= button_to feed_daily_path(date: @date.yesterday.strftime("%Y%m%d")), method: :get, class: "relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500" do %>
@@ -46,10 +32,12 @@
       <% end %>
     </div>
 
-    <div class="max-w-lg mx-auto">
+    <div class="max-w-lg mx-auto pt-12">
       <%= turbo_frame_tag "paginate_link", class: 'text-center' do %>
         <% if @page.last? %>
-          No more pages!
+          <div class="text-center">
+            No more pages!
+          </div>
         <% else %>
           <%= button_to "Load more", feed_daily_path(@feed, format: 'turbo_stream', page: @page.next_param), method: :get, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         <% end %>
