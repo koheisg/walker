@@ -6,7 +6,7 @@ export default class extends Controller {
   open() {
     navigator.share({
       title: this.linkTarget.title,
-      url: this.linkTarget.herf,
+      url: this.linkTarget.href,
     }).then(() => {
       console.log('share');
     });
