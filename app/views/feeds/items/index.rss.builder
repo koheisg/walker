@@ -22,7 +22,7 @@ xml.rss(
     xml.image do
       xml.url 'https://b.hatena.ne.jp/favicon.ico'
       xml.title @feed.name
-      xml.link feed_daily_url(date: date.strftime("%Y%m%d"))
+      xml.link feed_daily_url(date: @ref_time.strftime("%Y%m%d"))
       xml.width 32
       xml.height 32
     end
