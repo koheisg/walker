@@ -3,23 +3,23 @@
     <div class="flex flex-col p-2">
       <%= link_to item.link, title: item.title, class: 'text-gray-900 hover:underline visited:text-gray-500', target: '_blank', data: {'share-target': 'link'} do %>
         <div class="flex-shrink-0 px-2">
-          <% if item.item_ogp.image.present? %>
-            <% if item.item_ogp.image.start_with? 'http://', 'https://' %>
-              <%= image_tag item.item_ogp.image, class: 'object-cover max-h-64 w-full rounded-lg shadow' %>
+          <% if item.item_ogp&.image.present? %>
+            <% if item.item_ogp&.image.start_with? 'http://', 'https://' %>
+              <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow' %>
             <% else %>
-              <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp.image, class: 'object-cover max-h-64 w-full rounded-lg shadow' %>
+              <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow' %>
             <% end %>
           <% else %>
             <div class='h-64 bg-black flex space-x-4 justify-center items-center w-full rounded-lg shadow'>
               <span class='mx-4 text-center text-white font-bold text-lg'>
-                <%= item.item_ogp.title.presence || item.title %>
+                <%= item.item_ogp&.title.presence || item.title %>
               </span>
             </div>
           <% end %>
         </div>
         <div class="px-4 pt-5 sm:px-6">
           <p class="text-sm font-medium"><%= item.title %></p>
-          <p class="text-sm text-gray-500"><%= item.item_ogp.description.presence || item.description %></p>
+          <p class="text-sm text-gray-500"><%= item.item_ogp&.description.presence || item.description %></p>
         </div>
       <% end %>
       <div class="px-4 py-5 sm:px-6 w-full flex justify-end">
