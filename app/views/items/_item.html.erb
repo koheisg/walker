@@ -1,6 +1,6 @@
-<div class="col-span-1">
+<div class="col-span-1" data-controller="share">
   <%= link_to item.link, title: item.title, class: 'text-gray-900 hover:underline visited:text-gray-500', target: '_blank', data: {'share-target': 'link'} do %>
-    <div class="flex-shrink-0">
+    <div class="flex-shrink-0 mx-4 sm:mx-0">
       <% if item.item_ogp&.image.present? %>
         <% if item.item_ogp&.image.start_with? 'http://', 'https://' %>
           <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
@@ -9,20 +9,22 @@
         <% end %>
       <% else %>
         <div class='h-64 bg-black flex space-x-4 justify-center items-center w-full rounded-lg shadow'>
-          <span class='mx-4 text-center text-white font-bold text-lg'>
+          <span class='text-center text-white font-bold text-lg'>
             <%= item.item_ogp&.title.presence || item.title %>
           </span>
         </div>
       <% end %>
     </div>
     <div class="w-full flex items-center justify-between px-6 pt-6 space-x-6">
-      <div class="flex-1">
+      <div class="flex-1 sm:mx-0">
         <div class="flex items-center space-x-3">
           <h3 class="text-gray-900 text-sm font-medium"><%= item.title %></h3>
         </div>
       </div>
     </div>
-    <div class="flex justify-end items-center px-4 py-6 sm:px-6 border-b">
+  <% end %>
+  <div class="border-b">
+    <div class="flex justify-end items-center px-4 py-6 sm:px-6 mx-4 sm:mx-0">
       <p class="text-gray-500 text-sm truncate">
       <%= link_to item.feed.name, feed_items_path(item.feed), data: { turbo: false } %> ･ <%= time_ago_in_words item.created_at %> ago
       </p>
@@ -41,5 +43,5 @@
         </button>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
