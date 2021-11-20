@@ -1,48 +1,45 @@
-<div class='bg-white overflow-hidden my-5 border-b'>
-  <div class="bg-white" data-controller="share">
-    <div class="flex flex-col p-2">
-      <%= link_to item.link, title: item.title, class: 'text-gray-900 hover:underline visited:text-gray-500', target: '_blank', data: {'share-target': 'link'} do %>
-        <div class="flex-shrink-0 px-2">
-          <% if item.item_ogp&.image.present? %>
-            <% if item.item_ogp&.image.start_with? 'http://', 'https://' %>
-              <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
-            <% else %>
-              <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
-            <% end %>
-          <% else %>
-            <div class='h-64 bg-black flex space-x-4 justify-center items-center w-full rounded-lg shadow'>
-              <span class='mx-4 text-center text-white font-bold text-lg'>
-                <%= item.item_ogp&.title.presence || item.title %>
-              </span>
-            </div>
-          <% end %>
-        </div>
-        <div class="px-4 pt-5 sm:px-6">
-          <p class="text-sm font-medium"><%= item.title %></p>
-          <p class="text-sm text-gray-500"><%= item.item_ogp&.description.presence || item.description %></p>
+<div class="col-span-1">
+  <%= link_to item.link, title: item.title, class: 'text-gray-900 hover:underline visited:text-gray-500', target: '_blank', data: {'share-target': 'link'} do %>
+    <div class="flex-shrink-0">
+      <% if item.item_ogp&.image.present? %>
+        <% if item.item_ogp&.image.start_with? 'http://', 'https://' %>
+          <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
+        <% else %>
+          <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
+        <% end %>
+      <% else %>
+        <div class='h-64 bg-black flex space-x-4 justify-center items-center w-full rounded-lg shadow'>
+          <span class='mx-4 text-center text-white font-bold text-lg'>
+            <%= item.item_ogp&.title.presence || item.title %>
+          </span>
         </div>
       <% end %>
-      <div class="px-4 py-5 sm:px-6 w-full flex justify-end">
-        <div class='mr-auto'>
-          <p class="text-sm text-gray-500">
-            <%= link_to item.feed.name, feed_items_path(item.feed), data: { turbo: false } %> ･ <%= time_ago_in_words item.created_at %> ago
-          </p>
+    </div>
+    <div class="w-full flex items-center justify-between px-6 pt-6 space-x-6">
+      <div class="flex-1">
+        <div class="flex items-center space-x-3">
+          <h3 class="text-gray-900 text-sm font-medium"><%= item.title %></h3>
         </div>
-        <div class='ml-auto'>
-          <button
-              type="button"
-              class="-m-2 p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600"
-              data-action="click->share#open"
-              aria-expanded="false"
-              aria-haspopup="true">
+      </div>
+    </div>
+    <div class="flex justify-end items-center px-4 py-6 sm:px-6 border-b">
+      <p class="text-gray-500 text-sm truncate">
+      <%= link_to item.feed.name, feed_items_path(item.feed), data: { turbo: false } %> ･ <%= time_ago_in_words item.created_at %> ago
+      </p>
+      <div class='ml-auto'>
+        <button
+            type="button"
+            class="-m-2 p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600"
+            data-action="click->share#open"
+            aria-expanded="false"
+            aria-haspopup="true">
             <span class="sr-only">Open options</span>
             <!-- Heroicon name: solid/dots-vertical -->
             <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
             </svg>
-          </button>
-        </div>
+        </button>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>
