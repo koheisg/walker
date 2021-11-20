@@ -5,9 +5,9 @@
         <div class="flex-shrink-0 px-2">
           <% if item.item_ogp&.image.present? %>
             <% if item.item_ogp&.image.start_with? 'http://', 'https://' %>
-              <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow' %>
+              <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
             <% else %>
-              <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow' %>
+              <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
             <% end %>
           <% else %>
             <div class='h-64 bg-black flex space-x-4 justify-center items-center w-full rounded-lg shadow'>
