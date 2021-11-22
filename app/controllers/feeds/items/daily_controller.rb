@@ -4,7 +4,8 @@ class Feeds::Items::DailyController < ApplicationController
 
   def show
     @feed = Feed.find(params[:feed_id])
-    set_page_and_extract_portion_from @feed.items.includes(:item_ogp).where(created_at: @date...(@date.next_day))
+    set_page_and_extract_portion_from(@feed.items.includes(:item_ogp).where(created_at: @date...(@date.next_day)),
+                                      per_page: [12, 36, 72, 144])
   end
 
   private
