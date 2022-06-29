@@ -12,7 +12,7 @@ xml.rss(
   "xmlns:content" => "http://purl.org/rss/1.0/modules/content/"
 ) do
   xml.channel do
-    xml.title "#{(@ref_time - 1.day).to_date}のまとめ"
+    xml.title " #{@feed.name} (#{(@ref_time - 1.day).to_date})"
     # xml.description "#{@feed.name}の説明" # TODO
     xml.link feed_items_url(utm_medium: 'rss')
     xml.pubDate @ref_time.rfc822
