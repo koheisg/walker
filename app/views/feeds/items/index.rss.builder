@@ -13,7 +13,7 @@ xml.rss(
 ) do
   xml.channel do
     xml.title @feed.name
-    xml.description "#{@feed.name}の説明" # TODO
+    # xml.description "#{@feed.name}の説明" # TODO
     xml.link feed_items_url(utm_medium: 'rss')
     xml.pubDate @ref_time.rfc822
     xml.language "ja" # TODO localeから選択 'ja-ja' かも確認
@@ -32,11 +32,11 @@ xml.rss(
         xml.title "#{@feed.name} #{date}"
         xml.link feed_daily_url(date: date.strftime("%Y%m%d"), utm_medium: 'rss')
         xml.pubDate (date + 1.day).to_time
-        xml.content(:encoded) do
-          xml.cdata!(
-            (items.first(3).map { |item| item.title }.join(" / ")).truncate(140)
-          )
-        end
+        # xml.content(:encoded) do
+        #   xml.cdata!(
+        #     (items.first(3).map { |item| item.title }.join(" / ")).truncate(140)
+        #   )
+        # end
         xml.dc :creator, @feed.name
       end
     end
