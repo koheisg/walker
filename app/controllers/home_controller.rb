@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def show
-    set_page_and_extract_portion_from Item.includes(:feed, :item_ogp).all
+  end
+
+  helper_method :date
+  def date(date=Time.current)
+    date.strftime("%Y%m%d")
   end
 end

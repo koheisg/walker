@@ -26,7 +26,7 @@
   <div class="border-b">
     <div class="flex justify-end items-center px-4 py-6 sm:px-6 mx-4 sm:mx-0">
       <p class="text-gray-500 text-sm truncate">
-      <%= link_to item.feed.name, feed_items_path(item.feed), data: { turbo: false } %> ･ <%= time_ago_in_words item.created_at %> ago
+      <%= link_to item.feed.name, feed_path(item.feed), data: { turbo: false } %> ･ <%= time_ago_in_words item.created_at %> ago
       </p>
       <div class='ml-auto'>
         <button

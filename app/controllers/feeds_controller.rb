@@ -8,7 +8,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
-    set_page_and_extract_portion_from @feed.items
+    @items = @feed.items.last(10)
   end
 
   # GET /feeds/new

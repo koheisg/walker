@@ -38,20 +38,8 @@
   <div class="mx-auto">
     <div role="list">
       <%= turbo_frame_tag "items", class: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" do %>
-        <%= render collection: @page.records, partial: 'items/item' %>
+        <%= render collection: @items, partial: 'items/item' %>
       <% end %>
     </div>
-  </div>
-
-  <div class="max-w-lg mx-auto pt-12">
-    <%= turbo_frame_tag "paginate_link", class: 'text-center' do %>
-      <% if @page.last? %>
-        <div class="text-center">
-          No more pages!
-        </div>
-      <% else %>
-        <%= button_to "Load more", feed_daily_path(@feed, format: 'turbo_stream', page: @page.next_param), method: :get, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-      <% end %>
-    <% end %>
   </div>
 </main>

@@ -1,7 +1,6 @@
 <% content_for :breadcrumb do %>
   <%= render('shared/breadcrumb', links: [
     {path: feeds_path, name: 'Feeds'},
-    {path: feed_items_path(@feed), name: @feed.name},
     {path: request.path, name: 'detail'},
   ]) %>
 <% end %>
@@ -28,17 +27,7 @@
 <div class="py-6">
   <div class="max-w-lg">
     <%= turbo_frame_tag "items" do %>
-      <%= render @page.records %>
-    <% end %>
-  </div>
-
-  <div class='max-w-lg flex justify-center'>
-    <%= turbo_frame_tag "paginate_link" do %>
-      <% if @page.last? %>
-        No more pages!
-      <% else %>
-        <%= button_to "Load more", feed_path(@feed, format: 'turbo_stream', page: @page.next_param), method: :get, class: "inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-      <% end %>
+      <%= render @items %>
     <% end %>
   </div>
 </div>
