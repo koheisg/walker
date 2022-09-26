@@ -9,7 +9,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
-    @items = @feed.items.includes(:item_ogp).first(10)
+    @items = @feed.items.includes(:item_ogp).first(24)
   end
 
   # GET /feeds/new

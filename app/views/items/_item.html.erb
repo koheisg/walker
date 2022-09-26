@@ -3,41 +3,42 @@
     <div class="flex-shrink-0 mx-4 sm:mx-0">
       <% if item.item_ogp&.image.present? %>
         <% if item.item_ogp&.image.start_with? 'http://', 'https://' %>
-          <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
+          <div class='flex items-center justify-center md:h-44'>
+            <%= image_tag item.item_ogp&.image, class: 'object-cover max-h-full rounded-lg shadow', loading: "lazy" %>
+          </div>
         <% else %>
           <%= image_tag URI(item.link).scheme + '://' + URI(item.link).host + '/' + item.item_ogp&.image, class: 'object-cover max-h-64 w-full rounded-lg shadow', loading: "lazy" %>
         <% end %>
       <% else %>
-        <div class='h-64 bg-black flex space-x-4 justify-center items-center w-full rounded-lg shadow'>
-          <span class='text-center text-white font-bold text-lg'>
+        <div class='flex items-center justify-center w-full h-64 bg-black rounded-lg shadow space-x-4'>
+          <span class='text-lg font-bold text-center text-white'>
             <%= item.item_ogp&.title.presence || item.title %>
           </span>
         </div>
       <% end %>
     </div>
-    <div class="w-full flex items-center justify-between px-6 pt-6 space-x-6">
+    <div class="flex items-center justify-between w-full px-6 pt-6 md:h-12 space-x-6">
       <div class="flex-1 sm:mx-0">
-        <div class="flex items-center space-x-3">
-          <h3 class="text-gray-900 text-sm font-medium"><%= item.title %></h3>
-        </div>
+        <p class="hidden text-sm font-medium text-gray-900 md:block"><%= item.title.truncate(42) %></p>
+        <p class="text-sm font-medium text-gray-900 md:hidden md:block"><%= item.title %></p>
       </div>
     </div>
   <% end %>
   <div class="border-b">
-    <div class="flex justify-end items-center px-4 py-6 sm:px-6 mx-4 sm:mx-0">
-      <p class="text-gray-500 text-sm truncate">
+    <div class="flex items-center justify-end px-4 py-6 mx-4 sm:px-6 sm:mx-0">
+      <p class="text-sm text-gray-500 truncate">
       <%= link_to item.feed.name, feed_path(item.feed), data: { turbo: false } %> ･ <%= time_ago_in_words item.created_at %> ago
       </p>
       <div class='ml-auto'>
         <button
             type="button"
-            class="-m-2 p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600"
+            class="flex items-center p-2 -m-2 text-gray-400 rounded-full hover:text-gray-600"
             data-action="click->share#open"
             aria-expanded="false"
             aria-haspopup="true">
             <span class="sr-only">Open options</span>
             <!-- Heroicon name: solid/dots-vertical -->
-            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
             </svg>
         </button>
