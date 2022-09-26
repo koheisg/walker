@@ -18,8 +18,15 @@ ActiveRecord::Schema.define(version: 2021_10_09_101344) do
   create_table "feeds", force: :cascade do |t|
     t.string "name"
     t.string "url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "followings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "feed_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_id"], name: "index_followings_on_feed_id"
+    t.index ["user_id"], name: "index_followings_on_user_id"
   end
 
   create_table "item_ogps", force: :cascade do |t|
@@ -74,6 +81,8 @@ ActiveRecord::Schema.define(version: 2021_10_09_101344) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "followings", "feeds"
+  add_foreign_key "followings", "users"
   add_foreign_key "item_ogps", "items"
   add_foreign_key "items", "feeds"
 end
