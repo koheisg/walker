@@ -1,4 +1,5 @@
 class FeedsController < ApplicationController
+  skip_before_action :authenticate, only: :show
   before_action :set_feed, only: %i[ show edit update destroy ]
 
   # GET /feeds or /feeds.json
@@ -8,7 +9,7 @@ class FeedsController < ApplicationController
 
   # GET /feeds/1 or /feeds/1.json
   def show
-    @items = @feed.items.last(10)
+    @items = @feed.items.includes(:item_ogp).first(10)
   end
 
   # GET /feeds/new
@@ -65,6 +66,6 @@ class FeedsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def feed_params
-      params.require(:feed).permit(:name, :url)
+      params.require(:feed).permit(:name, :default, :url)
     end
 end

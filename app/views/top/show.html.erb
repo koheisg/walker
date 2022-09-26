@@ -11,13 +11,13 @@
 <% content_for :tab_menu do %>
   <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
     <% if root_url == request.url %>
-      <%= link_to root_url method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+      <%= link_to root_url, class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
         <span class="truncate">
           <%= t('all') %>
         </span>
       <% end %>
     <% else %>
-      <%= link_to root_url, method: 'get', class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+      <%= link_to root_url, class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
         <span class="truncate">
           <%= t('all') %>
         </span>
@@ -25,13 +25,13 @@
     <% end %>
     <% Current.feeds.each do |feed| %>
       <% if feed_url(feed) == request.url %>
-        <%= link_to feed_url(feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+        <%= link_to feed_url(feed), class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
           <span class="truncate">
             <%= feed.name %>
           </span>
         <% end %>
       <% else %>
-        <%= link_to feed_url(feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+        <%= link_to feed_url(feed), class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
           <span class="truncate">
             <%= feed.name %>
           </span>

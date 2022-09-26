@@ -1,9 +1,6 @@
 class TopController < ApplicationController
   def show
-    if Current.user
-      redirect_to home_path
-    else
-      redirect_to new_session_path
-    end
+    @date = Date.today
+    @items = Item.includes(:item_ogp, :feed).where(feed: Feed.default).first(10)
   end
 end
