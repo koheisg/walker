@@ -6,10 +6,11 @@ end
 
 Rails.application.routes.draw do
   root to: 'top#show'
+  resource :ogp, only: :show
   resource :session, only: [:new, :create, :destroy]
   get :home, to: 'home#show'
   resources :feeds do
-    resources :items, module: 'feeds', only: [] do
+    resources :items, module: 'feeds', only: [:index] do
       collection do
         resources :daily, param: :date, module: 'items', only: :show
       end
