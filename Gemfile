@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.2"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.0.alpha2"
+gem "rails"
 
 # Use postgresql as the database for Active Record
 gem "pg"
@@ -56,6 +56,7 @@ gem 'redis-namespace'
 gem 'geared_pagination'
 gem 'mini_magick'
 gem 'ferrum'
+gem 'sprockets-rails'
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
