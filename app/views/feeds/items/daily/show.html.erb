@@ -1,13 +1,13 @@
 <% content_for :title do %>
   <div class='flex items-center justify-center'>
     <%= button_to feed_daily_path(date: @date.yesterday.strftime("%Y%m%d")), method: :get, class: "relative inline-flex items-center px-2 py-2 rounded-l-md bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500" do %>
-      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
       </svg>
     <% end %>
     <span><%= l @date.to_date %></span>
     <%= button_to feed_daily_path(date: @date.tomorrow.strftime("%Y%m%d")), method: :get, class: "-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500" do %>
-      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
       </svg>
     <% end %>
@@ -15,8 +15,8 @@
 <% end %>
 
 <% content_for :tab_menu do %>
-  <div class="flex items-center space-x-2 overflow-y-auto whitespace-nowrap mb-2 border-b-4 border-gray-300">
-    <% Feed.all.each do |feed| %>
+  <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
+    <% Current.feed.each do |feed| %>
       <% if feed_daily_url(feed) == request.url %>
         <%= button_to feed_daily_url(feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
           <span class="truncate">
