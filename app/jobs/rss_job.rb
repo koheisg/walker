@@ -6,7 +6,7 @@ class RssJob < ApplicationJob
   discard_on ActiveJob::DeserializationError
 
   def perform(feed)
-    items = RSS::Parser.parse(feed.url)&.items
+    items = RSS::Parser.parse(feed.url, false)&.items
 
     Sentry.capture_message "cant get items feed_id: #{feed.id} url: #{feed.url}" if items.nil?
 
