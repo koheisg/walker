@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_144231) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_144338) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feed_groupings", force: :cascade do |t|
+    t.bigint "feed_id", null: false
+    t.bigint "feed_group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["feed_group_id"], name: "index_feed_groupings_on_feed_group_id"
+    t.index ["feed_id"], name: "index_feed_groupings_on_feed_id"
+  end
 
   create_table "feed_groups", force: :cascade do |t|
     t.string "name"
@@ -90,6 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_144231) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "feed_groupings", "feed_groups"
+  add_foreign_key "feed_groupings", "feeds"
   add_foreign_key "followings", "feeds"
   add_foreign_key "followings", "users"
   add_foreign_key "item_ogps", "items"
