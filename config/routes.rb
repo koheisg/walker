@@ -5,6 +5,7 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
 end
 
 Rails.application.routes.draw do
+  resources :feed_groups
   root to: 'top#show'
   resource :ogp, only: :show
   resource :session, only: [:new, :create, :destroy]
