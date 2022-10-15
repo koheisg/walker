@@ -65,6 +65,6 @@ class FeedGroupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def feed_group_params
-      params.require(:feed_group).permit(:name)
+      params.require(:feed_group).permit(:name, feed_ids: [])
     end
 end

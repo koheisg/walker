@@ -1,7 +1,14 @@
 <div id="<%= dom_id feed_group %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block mb-1 font-medium">Name:</strong>
     <%= feed_group.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block mb-1 font-medium">Feeds:</strong>
+    <% feed_group.feeds.each do |feed| %>
+      <%= feed.name %><br>
+    <% end %>
   </p>
 
   <% if action_name != "show" %>
