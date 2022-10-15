@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
   resources :feed_groups do
-    resources :items, module: 'feed_groups', only: [] do
+    resources :items, module: 'feed_groups', only: [:index] do
       collection do
         resources :daily, param: :date, module: 'items', only: :show
         resources :weekly, param: :date, module: 'items', only: :show
