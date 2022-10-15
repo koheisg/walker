@@ -18,6 +18,14 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :feed_groups do
+    resources :items, module: 'feed_groups', only: [] do
+      collection do
+        resources :daily, param: :date, module: 'items', only: :show
+        resources :weekly, param: :date, module: 'items', only: :show
+      end
+    end
+  end
   mount Sidekiq::Web => '/w'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   if Rails.env.development?
