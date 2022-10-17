@@ -22,11 +22,11 @@ class OgpParser
       doc = Nokogiri::HTML(URI.open(url))
       doc.then do |doc|
         {
-          title: doc.css('meta[property="og:title"]/@content').last.text,
-          og_type: doc.css('meta[property="og:type"]/@content').last.text,
-          description: doc.css('meta[property="og:description"]/@content').last.text,
-          url: doc.css('meta[property="og:url"]/@content').last.text,
-          site_name: doc.css('meta[property="og:site_name"]/@content').last.text,
+          title: doc.css('meta[property="og:title"]/@content').text,
+          og_type: doc.css('meta[property="og:type"]/@content').text,
+          description: doc.css('meta[property="og:description"]/@content').text,
+          url: doc.css('meta[property="og:url"]/@content').text,
+          site_name: doc.css('meta[property="og:site_name"]/@content').text,
           image: doc.css('meta[property="og:image"]/@content').last.text
         }
       end
