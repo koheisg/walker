@@ -23,6 +23,10 @@ Rails.application.routes.draw do
       collection do
         resources :daily, param: :date, module: 'items', only: :show
         resources :weekly, param: :date, module: 'items', only: :show
+        resources :feeds, module: 'feeds' do
+          resources :daily, param: :date, module: 'items', only: :show
+          resources :weekly, param: :date, module: 'items', only: :show
+        end
       end
     end
   end

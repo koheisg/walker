@@ -16,7 +16,7 @@
 
 <% content_for :tab_menu do %>
   <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
-    <% Current.feeds.each do |feed| %>
+    <% @feeds.each do |feed| %>
       <% if feed_weekly_url(feed) == request.url %>
         <%= button_to feed_weekly_url(feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
           <span class="truncate">
