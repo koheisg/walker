@@ -11,7 +11,7 @@
 
 <% content_for :tab_menu do %>
   <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
-    <% if root_url == request.url %>
+    <% if root_path == request.path %>
       <%= link_to root_url method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
         <span class="truncate">
           <%= t('all') %>

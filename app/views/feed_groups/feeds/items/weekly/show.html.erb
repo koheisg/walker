@@ -39,7 +39,7 @@
       </span>
     <% end %>
     <% @feeds.each do |feed| %>
-      <% if feed_group_feed_weekly_url(@feed_group, feed_id: feed) == request.url %>
+      <% if feed_group_feed_weekly_path(@feed_group, feed_id: feed) == request.path %>
         <%= button_to feed_group_feed_weekly_url(@feed_group, feed_id: feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
           <span class="truncate">
             <%= feed.name %>
