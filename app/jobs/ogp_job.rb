@@ -8,6 +8,6 @@ class OgpJob < ApplicationJob
   #
   # headless browser use many memories, unstable on multi thread.
   def perform(item)
-    item.create_item_ogp(OgpParser.call(item.link))
+    item.item_ogp || item.create_item_ogp(OgpParser.call(item.link))
   end
 end
