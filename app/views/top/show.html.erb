@@ -23,19 +23,13 @@
         </span>
       <% end %>
     <% end %>
-    <% Current.feeds.each do |feed| %>
-      <% if feed_url(feed) == request.url %>
-        <%= link_to feed_url(feed), class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
-          <span class="truncate">
-            <%= feed.name %>
-          </span>
-        <% end %>
-      <% else %>
-        <%= link_to feed_url(feed), class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
-          <span class="truncate">
-            <%= feed.name %>
-          </span>
-        <% end %>
+
+    <% Current.feed_groups.each do |feed_group| %>
+      <%= link_to feed_group_daily_path(feed_group_id: feed_group.id, date: Date.today.strftime("%Y%m%d")), class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+        <span class="truncate">
+          <%= feed_group.name %>
+        </span>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
+<% end %>
