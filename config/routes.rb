@@ -7,7 +7,6 @@ end
 Rails.application.routes.draw do
   root to: 'top#show'
   get :home, to: 'home#show'
-  resource :ogp, only: :show
   resource :session, only: [:new, :create, :destroy]
   resources :feeds do
     resources :items, module: 'feeds', only: [:index] do
