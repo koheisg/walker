@@ -5,11 +5,10 @@ Sidekiq::Web.use Rack::Auth::Basic do |username, password|
 end
 
 Rails.application.routes.draw do
-  resources :feed_groups
   root to: 'top#show'
+  get :home, to: 'home#show'
   resource :ogp, only: :show
   resource :session, only: [:new, :create, :destroy]
-  get :home, to: 'home#show'
   resources :feeds do
     resources :items, module: 'feeds', only: [:index] do
       collection do
@@ -31,7 +30,6 @@ Rails.application.routes.draw do
     end
   end
   mount Sidekiq::Web => '/w'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
