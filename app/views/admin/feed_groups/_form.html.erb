@@ -1,4 +1,4 @@
-<%= form_with(model: feed_group, class: "contents") do |form| %>
+<%= form_with(model: [:admin, feed_group], class: "contents") do |form| %>
   <% if feed_group.errors.any? %>
     <div id="error_explanation" class="px-3 py-2 mt-3 font-medium text-red-500 rounded-lg bg-red-50">
       <h2><%= pluralize(feed_group.errors.count, "error") %> prohibited this feed_group from being saved:</h2>

@@ -1,4 +1,4 @@
-class FeedGroupsController < ApplicationController
+class Admin::FeedGroupsController < Admin::ApplicationController
   before_action :set_feed_group, only: %i[ show edit update destroy ]
 
   # GET /feed_groups or /feed_groups.json
@@ -52,7 +52,7 @@ class FeedGroupsController < ApplicationController
     @feed_group.destroy
 
     respond_to do |format|
-      format.html { redirect_to feed_groups_url, notice: "Feed group was successfully destroyed." }
+      format.html { redirect_to admin_feed_groups_url, notice: "Feed group was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -1,7 +1,7 @@
 <% content_for :breadcrumb do %>
   <%= render('shared/breadcrumb', links: [
-    {path: feeds_path, name: 'Feeds'},
-    {path: feed_path(@feed), name: @feed.name},
+    {path: admin_feeds_path, name: 'Feeds'},
+    {path: admin_feed_path(@feed), name: @feed.name},
     {path: request.path, name: :edit},
   ]) %>
 <% end %>
@@ -10,5 +10,5 @@
 
 <%= render 'form', feed: @feed %>
 
-<%= link_to 'Show', @feed %> |
-<%= link_to 'Back', feeds_path %>
+<%= link_to 'Show', [:admin, @feed] %> |
+<%= link_to 'Back', admin_feeds_path %>

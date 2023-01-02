@@ -12,8 +12,8 @@
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this feed group", feed_group, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this feed group', edit_feed_group_path(feed_group), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Show this feed group", [:admin, feed_group], class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this feed group', edit_admin_feed_group_path(feed_group), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>
