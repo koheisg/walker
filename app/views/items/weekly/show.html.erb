@@ -1,0 +1,62 @@
+<% content_for :title do %>
+  <div class='flex items-center justify-center'>
+    <%= button_to weekly_path(date: @date.weeks_ago(1).strftime("%Y%m%d")), method: :get, class: "relative inline-flex items-center px-2 py-2 rounded-l-md bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500" do %>
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+      </svg>
+    <% end %>
+    <span><%= l @date.to_date %></span>
+    <div data-controller="dropdown" class="relative inline-block p-1 text-left">
+      <div>
+        <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+          Weekly
+          <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+      <div data-dropdown-target="menu" class="absolute right-0 hidden w-56 mt-2 bg-white shadow-lg transition transform origin-top-right rounded-md ring-1 ring-black ring-opacity-5 focus:outline-none" data-transition-enter-from="opacity-0 scale-95" data-transition-enter-to="opacity-100 scale-100" data-transition-leave-from="opacity-100 scale-100" data-transition-leave-to="opacity-0 scale-95">
+        <div class="py-1">
+          <a href="<%= daily_url %>" data-action="dropdown#toggle" class="block px-4 py-2 text-sm text-gray-900 bg-gray-100">Daily</a>
+          <a href="<%= weekly_url %>" data-action="dropdown#toggle" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">Weekly</a>
+        </div>
+      </div>
+    </div>
+    <%= button_to weekly_path(date: @date.weeks_since(1).strftime("%Y%m%d")), method: :get, class: "-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500" do %>
+      <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+      </svg>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :tab_menu do %>
+  <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
+    <% Current.feeds.each do |feed| %>
+      <% if weekly_path(feed) == request.path %>
+        <%= button_to feed_weekly_url(feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+          <span class="truncate">
+            <%= feed.name %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= button_to feed_weekly_url(feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+          <span class="truncate">
+            <%= feed.name %>
+          </span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<main class="mb-20">
+  <%= render 'open_links' %>
+  <div class="mx-auto">
+    <div role="list">
+      <%= turbo_frame_tag "items", class: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" do %>
+        <%= render collection: @items, partial: 'items/item' %>
+      <% end %>
+    </div>
+  </div>
+</main>

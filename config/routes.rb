@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   root to: 'top#show'
   get :home, to: 'home#show'
 
+  resources :items do
+    collection do
+      resources :daily, param: :date, module: 'items', only: :show
+      resources :weekly, param: :date, module: 'items', only: :show
+    end
+  end
+
+  # todo: rssのnamespaceを分ける
   resources :feeds, only: [] do
     resources :items, module: 'feeds', only: [:index] do
       collection do
@@ -32,7 +40,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'top#show'
-    resource :session, only: [:new, :create, :destroy]
+    get :login, to: 'sessions#new'
+    resource :session, only: [:create, :destroy]
     resources :feeds
     resources :feed_groups
   end
