@@ -35,7 +35,7 @@
 <% end %>
 
 <main class="mb-20">
-  <%= render 'open_links' %>
+  <%= render 'open_links', items: @items %>
   <div class="mx-auto">
     <div role="list">
       <%= turbo_frame_tag "items", class: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" do %>
