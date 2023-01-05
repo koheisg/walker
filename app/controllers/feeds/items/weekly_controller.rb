@@ -6,13 +6,4 @@ class Feeds::Items::WeeklyController < ApplicationController
     @feed = Feed.find(params[:feed_id])
     @items = @feed.items.includes(:item_ogp).where(created_at: (@date.weeks_ago(1))...(@date.next_day))
   end
-
-  private
-    def set_date
-      raise(AbstractController::ActionNotFound) unless params[:date].size == 8
-
-      @date = Date.parse(params[:date]).to_time
-    rescue Date::Error
-      raise(AbstractController::ActionNotFound)
-    end
 end

@@ -11,13 +11,4 @@ class FeedGroups::Feeds::Items::DailyController < ApplicationController
                   .where(feed_id: @feed_group.feed_ids,
                          created_at: @date...(@date.next_day))
   end
-
-  private
-    def set_date
-      raise(AbstractController::ActionNotFound) unless params[:date].size == 8
-
-      @date = Date.parse(params[:date]).to_time
-    rescue Date::Error
-      raise(AbstractController::ActionNotFound)
-    end
 end
