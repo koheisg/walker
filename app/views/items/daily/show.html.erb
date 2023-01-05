@@ -65,12 +65,15 @@
 <% end %>
 
 <main class="mb-20">
-  <%= render 'open_links', items: @items %>
+  <%= render 'open_links', items: @page.records %>
   <div class="mx-auto">
     <div role="list">
       <%= turbo_frame_tag "items", class: "grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" do %>
-        <%= render collection: @items, partial: 'items/item' %>
+        <%= render collection: @page.records, partial: 'items/item' %>
       <% end %>
     </div>
+  </div>
+  <div class="flex justify-center py-10">
+    <%= render partial: 'paginate_link', locals: {page: @page, link_path: daily_path(format: 'turbo_stream', page: @page.next_param)} %>
   </div>
 </main>

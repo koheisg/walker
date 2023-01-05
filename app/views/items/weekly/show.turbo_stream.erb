@@ -3,5 +3,5 @@
 <% end %>
 
 <%= turbo_stream.replace(:paginate_link) do %>
-  <%= render partial: 'paginate_link', formats: :html %>
+  <%= render partial: 'paginate_link', formats: :html, locals: { page: @page, link_path: weekly_path(format: 'turbo_stream', page: @page.next_param) } %>
 <% end %>
