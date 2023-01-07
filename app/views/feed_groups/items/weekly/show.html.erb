@@ -12,16 +12,64 @@
 
 <% content_for :tab_menu do %>
   <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
-    <%= button_to feed_group_weekly_url(@feed_group), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
-      <span class="truncate">
-        <%= @feed_group.name %>
-      </span>
+    <% if weekly_path == request.path %>
+      <%= link_to weekly_path, class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+        <span class="truncate">
+          <%= t('all') %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= link_to weekly_path, class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+        <span class="truncate">
+          <%= t('all') %>
+        </span>
+      <% end %>
+    <% end %>
+
+    <% Current.feed_groups.each do |feed_group| %>
+      <% if feed_group == @feed_group %>
+        <%= link_to feed_group_weekly_path(feed_group), class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+          <span class="truncate">
+            <%= feed_group.name %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= link_to feed_group_weekly_path(feed_group), class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+          <span class="truncate">
+            <%= feed_group.name %>
+          </span>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="flex items-center mb-2 overflow-y-auto border-b-4 border-gray-300 space-x-2 whitespace-nowrap">
+    <% if feed_group_weekly_path(@feed_group) == request.path %>
+      <%= button_to feed_group_weekly_path(@feed_group), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+        <span class="truncate">
+          <%= t('all') %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= button_to feed_group_weekly_path(@feed_group), method: 'get', class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+        <span class="truncate">
+          <%= t('all') %>
+        </span>
+      <% end %>
     <% end %>
     <% @feeds.each do |feed| %>
-      <%= button_to feed_group_feed_weekly_url(feed_id: feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
-        <span class="truncate">
-          <%= feed.name %>
-        </span>
+      <% if feed_group_feed_weekly_path(@feed_group, feed_id: feed) == request.path %>
+        <%= button_to feed_group_feed_weekly_path(@feed_group, feed_id: feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+          <span class="truncate">
+            <%= feed.name %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= button_to feed_group_feed_weekly_path(@feed_group, feed_id: feed), method: 'get', class: 'rounded-t-lg px-2 py-1.5 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 capitalize text-gray-500 bg-gray-200' do %>
+          <span class="truncate">
+            <%= feed.name %>
+          </span>
+        <% end %>
       <% end %>
     <% end %>
   </div>

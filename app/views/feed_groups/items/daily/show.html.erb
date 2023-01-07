@@ -28,7 +28,7 @@
 
     <% Current.feed_groups.each do |feed_group| %>
       <% if @feed_group == feed_group %>
-        <%= link_to root_url, class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
+        <%= link_to feed_group_daily_path(feed_group), class: 'rounded-t-lg px-2 py-1.5 font-medium text-gray-800 bg-gray-300' do %>
           <span class="truncate">
             <%= feed_group.name %>
           </span>
