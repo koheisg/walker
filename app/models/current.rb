@@ -13,8 +13,4 @@ class Current < ActiveSupport::CurrentAttributes
   def feeds
     Current.user&.feeds.presence || Feed.default
   end
-
-  def feed_groups
-    FeedGroup.default
-  end
 end

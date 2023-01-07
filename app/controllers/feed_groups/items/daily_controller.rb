@@ -3,6 +3,7 @@ class FeedGroups::Items::DailyController < ApplicationController
   before_action :set_date
 
   def show
+    @default_feed_groups = FeedGroup.default
     @feed_group = FeedGroup.find(params[:feed_group_id])
     @feeds = @feed_group.feeds
     @items = Item.includes(:feed, :item_ogp)

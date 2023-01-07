@@ -3,6 +3,7 @@ class FeedGroups::Feeds::Items::WeeklyController < ApplicationController
   before_action :set_date
 
   def show
+    @default_feed_groups = FeedGroup.default
     @feed = Feed.find(params[:feed_id])
     @feed_group = FeedGroup.find(params[:feed_group_id])
     @feeds = @feed_group.feeds

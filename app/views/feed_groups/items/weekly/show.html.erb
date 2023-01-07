@@ -11,7 +11,7 @@
 <% end %>
 
 <% content_for :tab_menu do %>
-  <%= render 'weekly_menu' %>
+  <%= render 'weekly_menu', default_feed_groups: @default_feed_groups, current_feed_group: @feed_group, current_feeds: @feeds %>
 <% end %>
 
 <main class="mb-20">
