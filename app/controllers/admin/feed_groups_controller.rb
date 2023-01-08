@@ -25,7 +25,7 @@ class Admin::FeedGroupsController < Admin::ApplicationController
 
     respond_to do |format|
       if @feed_group.save
-        format.html { redirect_to feed_group_url(@feed_group), notice: "Feed group was successfully created." }
+        format.html { redirect_to admin_feed_group_url(@feed_group), notice: "Feed group was successfully created." }
         format.json { render :show, status: :created, location: @feed_group }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class Admin::FeedGroupsController < Admin::ApplicationController
   def update
     respond_to do |format|
       if @feed_group.update(feed_group_params)
-        format.html { redirect_to feed_group_url(@feed_group), notice: "Feed group was successfully updated." }
+        format.html { redirect_to admin_feed_group_url(@feed_group), notice: "Feed group was successfully updated." }
         format.json { render :show, status: :ok, location: @feed_group }
       else
         format.html { render :edit, status: :unprocessable_entity }
