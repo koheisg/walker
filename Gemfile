@@ -51,7 +51,7 @@ gem "bootsnap", require: false
 gem 'rss', github: 'koheisg/rss'
 gem 'sentry-rails'
 gem 'sentry-ruby'
-gem 'sidekiq'
+gem 'sidekiq', '< 7'
 gem 'redis-namespace'
 gem 'geared_pagination'
 gem 'mini_magick'
@@ -82,3 +82,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "solid_queue", "~> 0.3.0"
