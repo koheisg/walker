@@ -1,6 +1,8 @@
 class OgpJob < ApplicationJob
   queue_as :default
 
+  sidekiq_options retry: false
+
   discard_on ActiveJob::DeserializationError, ActiveRecord::RecordNotUnique, Ferrum::NodeNotFoundError
 
   # Try nokogiri at first.
