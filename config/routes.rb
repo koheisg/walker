@@ -1,9 +1,3 @@
-require 'sidekiq/web'
-
-Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-  username == ENV['ADMIN_USER'] && password == ENV['ADMIN_PASSWORD']
-end
-
 Rails.application.routes.draw do
   root to: 'top#show'
   get :home, to: 'home#show'
@@ -45,8 +39,6 @@ Rails.application.routes.draw do
     resources :feeds
     resources :feed_groups
   end
-
-  mount Sidekiq::Web => '/w'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

@@ -1,3 +1,3 @@
 release: bin/rails db:migrate
 web: bin/rails server -p $PORT -e $RAILS_ENV
-worker: bundle exec sidekiq -t 25 -c 3
+worker: bin/rails rake solid_queue:start
