@@ -8,6 +8,8 @@ class OgpJob < ApplicationJob
   #
   # headless browser use many memories, unstable on multi thread.
   def perform(item)
+    Sentry.set_extras(item_id: item.id, item_link: item.link)
+
     item.item_ogp || item.create_item_ogp(OgpParser.call(item.link))
   end
 end
