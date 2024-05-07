@@ -27,7 +27,7 @@ class RssJob < ApplicationJob
                    end
                  end
 
-      OgpJob.perform_later(new_item) unless new_item.item_ogp
+      OgpJob.perform_now(new_item) unless new_item.item_ogp
     end
   end
 end
