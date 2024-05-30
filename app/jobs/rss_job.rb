@@ -8,9 +8,12 @@ class RssJob < ApplicationJob
   def perform(feed)
     Sentry.set_extras(feed_id: feed.id, feed_url: feed.url)
 
-    items = RSS::Parser.parse(feed.url, false)&.items
+    items = parse_rss_items(feed.url)
 
-    Sentry.capture_message "cant get items feed_id: #{feed.id} url: #{feed.url}" if items.nil?
+    if items.nil?
+      Sentry.capture_message "cant get items feed_id: #{feed.id} url: #{feed.url}"
+      return
+    end
 
     items.each do |item|
       new_item = if item.class == RSS::Atom::Feed::Entry
@@ -29,5 +32,11 @@ class RssJob < ApplicationJob
 
       OgpJob.perform_now(new_item) unless new_item.item_ogp
     end
+  end
+
+  private
+
+  def parse_rss_items(url)
+    RSS::Parser.parse(url, false)&.items
   end
 end
